@@ -40,13 +40,23 @@ end
 
 remote_file jar_file do
   source node[:leiningen][:jar_url]
-  owner "root"
+  owner "vagrant"
   group "root"
   mode 0644
   checksum node[:leiningen][:jar_checksum]
 end
 
+
+directory "/home/vagrant/.lein" do
+  owner "root"
+  group "root"
+  mode 0755
+  action :create
+end
+
 cookbook_file "/home/vagrant/.lein/profiles.clj" do
   source "profiles.clj"
-  mode "0644"
-end 
+  owner "root"
+  group "root"
+  mode 0755
+end
